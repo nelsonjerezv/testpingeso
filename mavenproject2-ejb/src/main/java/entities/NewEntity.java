@@ -24,7 +24,7 @@ public class NewEntity implements Serializable {
     private Long id;
     private String name;
 
-    public Long getId() {  
+    public Long getId(){
         return id;
     }
 
