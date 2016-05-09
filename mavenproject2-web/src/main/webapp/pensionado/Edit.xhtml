@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PensionadoEditDlg" widgetVar="PensionadoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPensionadoTitle}">
+            <h:form id="PensionadoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pensionadoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{pensionadoController.selected.id}" title="#{bundle.EditPensionadoTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_rut}" for="pen_rut" />
+                        <p:inputText id="pen_rut" value="#{pensionadoController.selected.pen_rut}" title="#{bundle.EditPensionadoTitle_pen_rut}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_nombres}" for="pen_nombres" />
+                        <p:inputText id="pen_nombres" value="#{pensionadoController.selected.pen_nombres}" title="#{bundle.EditPensionadoTitle_pen_nombres}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_apellidos}" for="pen_apellidos" />
+                        <p:inputText id="pen_apellidos" value="#{pensionadoController.selected.pen_apellidos}" title="#{bundle.EditPensionadoTitle_pen_apellidos}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_fechaNacimiento}" for="pen_fechaNacimiento" />
+                        <p:inputText id="pen_fechaNacimiento" value="#{pensionadoController.selected.pen_fechaNacimiento}" title="#{bundle.EditPensionadoTitle_pen_fechaNacimiento}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_estadoCivil}" for="pen_estadoCivil" />
+                        <p:inputText id="pen_estadoCivil" value="#{pensionadoController.selected.pen_estadoCivil}" title="#{bundle.EditPensionadoTitle_pen_estadoCivil}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_direccion}" for="pen_direccion" />
+                        <p:inputText id="pen_direccion" value="#{pensionadoController.selected.pen_direccion}" title="#{bundle.EditPensionadoTitle_pen_direccion}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_comuna}" for="pen_comuna" />
+                        <p:inputText id="pen_comuna" value="#{pensionadoController.selected.pen_comuna}" title="#{bundle.EditPensionadoTitle_pen_comuna}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_region}" for="pen_region" />
+                        <p:inputText id="pen_region" value="#{pensionadoController.selected.pen_region}" title="#{bundle.EditPensionadoTitle_pen_region}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_telefonoFijo}" for="pen_telefonoFijo" />
+                        <p:inputText id="pen_telefonoFijo" value="#{pensionadoController.selected.pen_telefonoFijo}" title="#{bundle.EditPensionadoTitle_pen_telefonoFijo}" />
+                        <p:outputLabel value="#{bundle.EditPensionadoLabel_pen_celular}" for="pen_celular" />
+                        <p:inputText id="pen_celular" value="#{pensionadoController.selected.pen_celular}" title="#{bundle.EditPensionadoTitle_pen_celular}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pensionadoController.update}" value="#{bundle.Save}" update="display,:PensionadoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PensionadoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PensionadoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

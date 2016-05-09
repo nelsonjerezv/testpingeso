@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sessionsbeans;
 
-import entities.NewEntity;
+import entities.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,19 +14,19 @@ import javax.ejb.Local;
  * @author Nelson
  */
 @Local
-public interface NewEntityFacadeLocal {
+public interface UsuarioFacadeLocal {
 
-    void create(NewEntity newEntity);
+    void create(Usuario usuario);
 
-    void edit(NewEntity newEntity);
+    void edit(Usuario usuario);
 
-    void remove(NewEntity newEntity);
+    void remove(Usuario usuario);
 
-    NewEntity find(Object id);
+    Usuario find(Object id);
 
-    List<NewEntity> findAll();
+    List<Usuario> findAll();
 
-    List<NewEntity> findRange(int[] range);
+    List<Usuario> findRange(int[] range);
 
     int count();
     

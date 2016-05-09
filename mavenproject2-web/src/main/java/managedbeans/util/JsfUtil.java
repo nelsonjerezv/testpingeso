@@ -1,4 +1,4 @@
-package managebeans.util;
+package managedbeans.util;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;

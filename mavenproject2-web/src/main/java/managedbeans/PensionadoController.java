@@ -1,9 +1,9 @@
-package managebeans;
+package managedbeans;
 
-import entities.NewEntity;
-import managebeans.util.JsfUtil;
-import managebeans.util.JsfUtil.PersistAction;
-import sessionsbeans.NewEntityFacadeLocal;
+import entities.Pensionado;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionsbeans.PensionadoFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("newEntityController")
+@Named("pensionadoController")
 @SessionScoped
-public class NewEntityController implements Serializable {
+public class PensionadoController implements Serializable {
 
     @EJB
-    private NewEntityFacadeLocal ejbFacade;
-    private List<NewEntity> items = null;
-    private NewEntity selected;
+    private PensionadoFacadeLocal ejbFacade;
+    private List<Pensionado> items = null;
+    private Pensionado selected;
 
-    public NewEntityController() {
+    public PensionadoController() {
     }
 
-    public NewEntity getSelected() {
+    public Pensionado getSelected() {
         return selected;
     }
 
-    public void setSelected(NewEntity selected) {
+    public void setSelected(Pensionado selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class NewEntityController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private NewEntityFacadeLocal getFacade() {
+    private PensionadoFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public NewEntity prepareCreate() {
-        selected = new NewEntity();
+    public Pensionado prepareCreate() {
+        selected = new Pensionado();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NewEntityCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PensionadoCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NewEntityUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PensionadoUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("NewEntityDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PensionadoDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<NewEntity> getItems() {
+    public List<Pensionado> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class NewEntityController implements Serializable {
         }
     }
 
-    public NewEntity getNewEntity(java.lang.Long id) {
+    public Pensionado getPensionado(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<NewEntity> getItemsAvailableSelectMany() {
+    public List<Pensionado> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<NewEntity> getItemsAvailableSelectOne() {
+    public List<Pensionado> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = NewEntity.class)
-    public static class NewEntityControllerConverter implements Converter {
+    @FacesConverter(forClass = Pensionado.class)
+    public static class PensionadoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            NewEntityController controller = (NewEntityController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "newEntityController");
-            return controller.getNewEntity(getKey(value));
+            PensionadoController controller = (PensionadoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "pensionadoController");
+            return controller.getPensionado(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -151,11 +151,11 @@ public class NewEntityController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof NewEntity) {
-                NewEntity o = (NewEntity) object;
+            if (object instanceof Pensionado) {
+                Pensionado o = (Pensionado) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), NewEntity.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Pensionado.class.getName()});
                 return null;
             }
         }

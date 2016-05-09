@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sessionsbeans;
 
-import entities.NewEntity;
+import entities.Pensionado;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Nelson
  */
 @Stateless
-public class NewEntityFacade extends AbstractFacade<NewEntity> implements NewEntityFacadeLocal {
+public class PensionadoFacade extends AbstractFacade<Pensionado> implements PensionadoFacadeLocal {
     @PersistenceContext(unitName = "com.mycompany_mavenproject2-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -25,8 +24,8 @@ public class NewEntityFacade extends AbstractFacade<NewEntity> implements NewEnt
         return em;
     }
 
-    public NewEntityFacade() {
-        super(NewEntity.class);
+    public PensionadoFacade() {
+        super(Pensionado.class);
     }
     
 }
